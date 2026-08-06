@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../utils/motion";
 
-function Skills({ name, icon, index }) {
+function Skills({ name, icon: Icon, color, index }) {
   const ref = React.useRef(null);
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
 
@@ -34,14 +34,12 @@ function Skills({ name, icon, index }) {
         }}
       >
         <div
+          title={name}
+          aria-label={name}
+          style={{ color }}
           className={`cursor-pointer w-[85px] h-[85px] flex items-center justify-center`}
         >
-          <img
-            title={name}
-            alt={name}
-            src={icon?.src || icon}
-            className="cursor-pointer object-contain w-full h-full max-w-[85px] max-h-[85px]"
-          />
+          <Icon className="object-contain w-full h-full max-w-[85px] max-h-[85px]" />
         </div>
       </motion.div>
     </motion.div>

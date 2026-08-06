@@ -1,60 +1,14 @@
 "use client";
-import { memo, useRef, useEffect, useCallback, useState } from "react";
+import { memo, useState } from "react";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
 import heroImg from "../assets/user.svg";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIntro } from "./IntroWrapper";
 
 const Hero = memo(function Hero() {
   const { introComplete } = useIntro();
-  const firstText = useRef(null);
-  const secondText = useRef(null);
-  const slider = useRef(null);
-  const xPercentRef = useRef(0);
-  const directionRef = useRef(-1);
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.to(slider.current, {
-        scrollTrigger: {
-          trigger: document.documentElement,
-          scrub: 0.5,
-          start: 0,
-          end: window.innerHeight,
-          onUpdate: (e) => (directionRef.current = e.direction * -1),
-        },
-        x: "-500px",
-      });
-    });
-
-    let animationId;
-    const animate = () => {
-      if (xPercentRef.current < -100) {
-        xPercentRef.current = 0;
-      } else if (xPercentRef.current > 0) {
-        xPercentRef.current = -100;
-      }
-      if (firstText.current && secondText.current) {
-        gsap.set(firstText.current, { xPercent: xPercentRef.current });
-        gsap.set(secondText.current, { xPercent: xPercentRef.current });
-      }
-      xPercentRef.current += 0.1 * directionRef.current;
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    return () => {
-      ctx.revert();
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
 
   return (
     <section
@@ -95,24 +49,9 @@ const Hero = memo(function Hero() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-[60px] lg:text-[110px] block"
             >
-              Himanshu
+              Tuan
             </motion.span>
           </motion.h1>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={introComplete ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="sliderContainer md:z-[-10]"
-      >
-        <div
-          ref={slider}
-          className="slider overflow-hidden text-secondary text-[70px] lg:text-[200px]"
-        >
-          <p ref={firstText}>Full-Stack Developer.</p>
-          <p ref={secondText}>Full-Stack Developer.</p>
         </div>
       </motion.div>
 

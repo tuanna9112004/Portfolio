@@ -1,7 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const poppins = Poppins({
@@ -12,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Himanshu Sangwan",
-  description: "Himanshu Sangwan is a full stack developer.",
+  title: "Nguyen Anh Tuan",
+  description: "Nguyen Anh Tuan is a Laravel & PHP developer.",
 };
 
 export const viewport = {
@@ -25,20 +24,6 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.className}>
-      <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-      </head>
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-NRS9PX9R2K"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments)}
-gtag('js', new Date());
-gtag('config', 'G-NRS9PX9R2K');`}
-      </Script>
       <SmoothScroll />
       <body>
         <Toaster

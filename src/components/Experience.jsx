@@ -22,6 +22,8 @@ const VerticalTimelineElement = dynamic(
   { ssr: false }
 );
 
+import { HiOutlineBriefcase } from "react-icons/hi2";
+
 import { styles } from "../styles";
 import { experiences } from "../constants/constants";
 import { SectionWrapper } from "./hoc";
@@ -39,11 +41,15 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className="flex justify-center items-center w-full h-full">
-          <img
-            src={experience.icon?.src || experience.icon}
-            alt={experience.company_name}
-            className="w-[60%] h-[60%] object-contain"
-          />
+          {experience.icon ? (
+            <img
+              src={experience.icon?.src || experience.icon}
+              alt={experience.company_name}
+              className="w-[60%] h-[60%] object-contain"
+            />
+          ) : (
+            <HiOutlineBriefcase className="w-[60%] h-[60%] text-white" />
+          )}
         </div>
       }
     >

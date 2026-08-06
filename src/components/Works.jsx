@@ -65,59 +65,71 @@ const ProjectCard = ({
       <div className="lg:flex gap-10 lg:flex-row lg:justify-between lg:items-center">
         <Tilt className=" lg:w-[90%] lg:h-[90%] w-full h-full">
           <div className="relative cursor-pointer flex justify-between transition-all duration-500">
-            <img
-              src={image.src}
-              alt="project_image"
-              className=" h-full w-full object-cover rounded-2xl"
-            />
+            {image ? (
+              <img
+                src={image.src}
+                alt="project_image"
+                className=" h-full w-full object-cover rounded-2xl"
+              />
+            ) : (
+              <div className="h-64 w-full rounded-2xl bg-gradient-to-br from-[#1d1836] to-[#232631] flex items-center justify-center">
+                <span className="text-secondary text-sm font-medium">
+                  Preview coming soon
+                </span>
+              </div>
+            )}
           </div>
         </Tilt>
         <div className="flex sm:flex lg:flex-col gap-8 mt-3">
-          <motion.div
-            ref={refLiveLink}
-            onMouseMove={onMouseMoveLiveLink}
-            onMouseLeave={onMouseLeave}
-            animate={{ x: positionLiveLink.x, y: positionLiveLink.y }}
-            transition={{
-              type: "spring",
-              stiffness: 130,
-              damping: 50,
-              mass: 0.1,
-            }}
-          >
-            <button
-              onClick={() => window.open(live_link, "_blank")}
-              className=" text-gradient lg:w-[10%] flex justify-center"
+          {live_link && (
+            <motion.div
+              ref={refLiveLink}
+              onMouseMove={onMouseMoveLiveLink}
+              onMouseLeave={onMouseLeave}
+              animate={{ x: positionLiveLink.x, y: positionLiveLink.y }}
+              transition={{
+                type: "spring",
+                stiffness: 130,
+                damping: 50,
+                mass: 0.1,
+              }}
             >
-              <p className=" font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary text-[#915EFF] ">
-                <HiLink size={30} className=" " />
-              </p>
-            </button>
-          </motion.div>
-          <motion.div
-            ref={refSourceCodeLink}
-            onMouseMove={onMouseMoveSourceCodeLink}
-            onMouseLeave={onMouseLeave}
-            animate={{
-              x: positionSourceCodeLink.x,
-              y: positionSourceCodeLink.y,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 130,
-              damping: 50,
-              mass: 0.1,
-            }}
-          >
-            <button
-              onClick={() => window.open(source_code_link, "_blank")}
-              className=" text-gradient lg:w-[10%] flex justify-center"
+              <button
+                onClick={() => window.open(live_link, "_blank")}
+                className=" text-gradient lg:w-[10%] flex justify-center"
+              >
+                <p className=" font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary text-[#915EFF] ">
+                  <HiLink size={30} className=" " />
+                </p>
+              </button>
+            </motion.div>
+          )}
+          {source_code_link && (
+            <motion.div
+              ref={refSourceCodeLink}
+              onMouseMove={onMouseMoveSourceCodeLink}
+              onMouseLeave={onMouseLeave}
+              animate={{
+                x: positionSourceCodeLink.x,
+                y: positionSourceCodeLink.y,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 130,
+                damping: 50,
+                mass: 0.1,
+              }}
             >
-              <p className="text-white font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary hover:bg-black ">
-                <ImGithub size={30} className=" text-[#915EFF]" />
-              </p>
-            </button>
-          </motion.div>
+              <button
+                onClick={() => window.open(source_code_link, "_blank")}
+                className=" text-gradient lg:w-[10%] flex justify-center"
+              >
+                <p className="text-white font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary hover:bg-black ">
+                  <ImGithub size={30} className=" text-[#915EFF]" />
+                </p>
+              </button>
+            </motion.div>
+          )}
         </div>
       </div>
 
@@ -135,21 +147,34 @@ const ProjectCard = ({
           </ul>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-3">
-          {tags.map((tag) => (
-            <p
-              title={tag.name}
-              key={`${name}-${tag.name}`}
-              className={`text-[17px] font-semibold ${tag.color}`}
-            >
-              #{tag.name}
-            </p>
-          ))}
-        </div>
+        {tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-3">
+            {tags.map((tag) => (
+              <p
+                title={tag.name}
+                key={`${name}-${tag.name}`}
+                className={`text-[17px] font-semibold ${tag.color}`}
+              >
+                #{tag.name}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+const ComingSoonCard = () => (
+  <div className="bg-tertiary bg-opacity-40 p-5 rounded-2xl opacity-60">
+    <h3 className="text-white font-bold text-[24px]">Coming Soon</h3>
+    <div className="mt-5 h-40 w-full rounded-2xl bg-gradient-to-br from-[#1d1836] to-[#232631] flex items-center justify-center">
+      <span className="text-secondary text-sm font-medium">
+        A new project is in the works — check back soon.
+      </span>
+    </div>
+  </div>
+);
 
 const Works = () => {
   return (
@@ -164,11 +189,7 @@ const Works = () => {
 
         <div className="w-full flex">
           <motion.p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-            Following projects showcases my skills and experience through
-            real-world examples of my work. Each project is briefly described
-            with links to code repositories and live demos in it. It reflects my
-            ability to solve complex problems, work with different technologies,
-            and manage projects effectively.
+            One project live today, with more in the pipeline.
           </motion.p>
           <Image
             src={color_sharp}
@@ -181,6 +202,9 @@ const Works = () => {
       <div className="mt-20 flex flex-col gap-7">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
+        ))}
+        {Array.from({ length: 3 }).map((_, index) => (
+          <ComingSoonCard key={`coming-soon-${index}`} />
         ))}
       </div>
     </>

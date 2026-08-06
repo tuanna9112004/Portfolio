@@ -64,6 +64,7 @@ const Tech = () => {
                 <Skills
                   name={technology.name}
                   icon={technology.icon}
+                  color={technology.color}
                   index={index}
                 />
               </div>
