@@ -1,14 +1,15 @@
 "use client";
 import { useState, useCallback, createContext, useContext } from "react";
 import RocketIntro from "./RocketIntro";
+import { SHOW_ROCKET_INTRO } from "../constants/siteConfig";
 
 export const IntroContext = createContext({ introComplete: false });
 
 export const useIntro = () => useContext(IntroContext);
 
 const IntroWrapper = ({ children }) => {
-  const [showIntro, setShowIntro] = useState(true);
-  const [introComplete, setIntroComplete] = useState(false);
+  const [showIntro, setShowIntro] = useState(SHOW_ROCKET_INTRO);
+  const [introComplete, setIntroComplete] = useState(!SHOW_ROCKET_INTRO);
 
   const handleIntroComplete = useCallback(() => {
     setIntroComplete(true);

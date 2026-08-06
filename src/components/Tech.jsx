@@ -60,7 +60,7 @@ const Tech = () => {
         {pyramidRows.map((row, rowIndex) => (
           <div key={rowIndex} className="flex flex-wrap gap-10 justify-center">
             {row.map((technology, index) => (
-              <div className="w-28 h-28 mt-5" key={technology.name}>
+              <div className="w-[34px] h-[34px] mt-5" key={technology.name}>
                 <Skills
                   name={technology.name}
                   icon={technology.icon}

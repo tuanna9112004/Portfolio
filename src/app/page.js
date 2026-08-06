@@ -10,6 +10,7 @@ import {
 import Experience from "@/components/Experience";
 import Feedbacks from "@/components/Feedbacks";
 import IntroWrapper from "@/components/IntroWrapper";
+import { SHOW_WORK_EXPERIENCE } from "@/constants/siteConfig";
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="bg-primary relative z-[1] h-full">
           <div className="relative z-[1]">
             <About />
-            <Experience />
+            {SHOW_WORK_EXPERIENCE && <Experience />}
             <div className="overflow-hidden">
               <Tech />
             </div>

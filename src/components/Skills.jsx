@@ -37,9 +37,9 @@ function Skills({ name, icon: Icon, color, index }) {
           title={name}
           aria-label={name}
           style={{ color }}
-          className={`cursor-pointer w-[85px] h-[85px] flex items-center justify-center`}
+          className={`cursor-pointer w-[26px] h-[26px] flex items-center justify-center`}
         >
-          <Icon className="object-contain w-full h-full max-w-[85px] max-h-[85px]" />
+          <Icon className="object-contain w-full h-full max-w-[26px] max-h-[26px]" />
         </div>
       </motion.div>
     </motion.div>
