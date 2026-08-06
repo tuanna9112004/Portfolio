@@ -10,7 +10,6 @@ import { fadeIn, textVariant } from "../utils/motion";
 import { HiLink } from "react-icons/hi";
 import { ImGithub } from "react-icons/im";
 import Image from "next/image";
-import color_sharp from "../assets/color_sharp.png";
 
 const ProjectCard = ({
   index,
@@ -180,6 +179,10 @@ const Works = () => {
   return (
     <>
       <div className="relative">
+        <div
+          aria-hidden="true"
+          className="absolute -z-10 -left-10 -top-10 h-56 w-72 rounded-full bg-[#8b5cf6]/30 blur-[70px]"
+        />
         <div>
           <p id="work" className={`${styles.sectionSubText} `}>
             My work
@@ -191,11 +194,6 @@ const Works = () => {
           <motion.p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
             One project live today, with more in the pipeline.
           </motion.p>
-          <Image
-            src={color_sharp}
-            alt="color-sharp"
-            className="absolute z-[-1] h-80 -left-60 w-screen -top-20"
-          />
         </div>
       </div>
 
@@ -211,4 +209,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");

@@ -202,11 +202,6 @@
 }
 
 .banner {
-  background-image: url("/banner-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten;
   background-color: #050816;
   height: 100vh;
 }

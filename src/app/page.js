@@ -4,7 +4,6 @@ import {
   Hero,
   Navbar,
   StarsCanvas,
-  Tech,
   Works,
 } from "@/components";
 import Experience from "@/components/Experience";
@@ -22,9 +21,6 @@ export default function Home() {
           <div className="relative z-[1]">
             <About />
             {SHOW_WORK_EXPERIENCE && <Experience />}
-            <div className="overflow-hidden">
-              <Tech />
-            </div>
             <Works />
             <Feedbacks />
             <Contact />
